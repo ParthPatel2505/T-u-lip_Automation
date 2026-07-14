@@ -1,0 +1,33 @@
+{
+  "name": "tulip-automation",
+  "version": "1.0.0",
+  "description": "Playwright Enterprise Automation Framework for Tulip UAT",
+  "type": "module",
+  "scripts": {
+    "test": "npx playwright test",
+    "test:smoke": "npx playwright test tests/smoke/",
+    "test:regression": "npx playwright test tests/regression/",
+    "test:api": "npx playwright test tests/api/",
+    "test:visual": "npx playwright test tests/visual/",
+    "test:qa": "cross-env ENV=qa npx playwright test",
+    "test:stage": "cross-env ENV=stage npx playwright test",
+    "test:prod": "cross-env ENV=prod npx playwright test",
+    "test:headed": "npx playwright test --headed",
+    "test:debug": "npx playwright test --debug",
+    "report": "npx playwright show-report",
+    "test:login": "npx playwright test tests/smoke/login.spec.js --headed",
+    "mcp": "npx @playwright/mcp@latest"
+  },
+  "dependencies": {
+    "dotenv": "^16.6.1",
+    "playwright": "^1.61.1",
+    "winston": "^3.17.0"
+  },
+  "devDependencies": {
+    "@playwright/test": "^1.61.1",
+    "@types/node": "^26.1.1"
+  },
+  "keywords": ["playwright", "automation", "testing", "tulip"],
+  "author": "Tulip QA Team",
+  "license": "ISC"
+}
