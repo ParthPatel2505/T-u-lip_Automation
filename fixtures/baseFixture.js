@@ -14,6 +14,8 @@ import { test as base } from '@playwright/test';
 import { LoginPage } from '../pages/LoginPage.js';
 import { SignupPage } from '../pages/Signup/SignupPage.js';
 import { YopmailPage } from '../pages/Signup/YopmailPage.js';
+import { TulipDashboardPage } from '../pages/Main/TulipDashboardPage.js';
+
 
 /**
  * Custom test fixture extending Playwright's base test.
@@ -55,6 +57,14 @@ export const test = base.extend({
   yopmailPage: async ({ page }, use) => {
     const yopmailPage = new YopmailPage(page);
     await use(yopmailPage);
+  },
+
+  /**
+   * Provides a TulipDashboardPage instance.
+   */
+  tulipDashboardPage: async ({ page }, use) => {
+    const tulipDashboardPage = new TulipDashboardPage(page);
+    await use(tulipDashboardPage);
   },
 
   /**
