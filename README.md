@@ -10,10 +10,6 @@ Automated testing framework for **Tulip UAT** built with [Playwright](https://pl
 playwright-enterprise-framework/
 │
 ├── tests/                    # Test suites organized by type
-│   ├── smoke/                # Smoke tests (login, basic flows)
-│   ├── regression/           # Full regression tests
-│   ├── api/                  # API tests
-│   └── visual/               # Visual regression tests
 │
 ├── pages/                    # Page Object Models
 │   ├── BasePage.js           # Base class with reusable methods
@@ -71,15 +67,20 @@ npx playwright install
 
 ### Configure Credentials
 
-Create your own `.env` file in the project root (this file is gitignored):
+1. **Root Environment Config**: Create your own `.env` file in the project root (this file is gitignored):
+   ```env
+   BASE_URL=https://tulip-uat.tntra.io/tix/
+   DEFAULT_USERNAME=your.email@tntra.io
+   DEFAULT_PASSWORD=YourPassword
+   ```
 
-```env
-BASE_URL=https://tulip-uat.tntra.io/tix/
-DEFAULT_USERNAME=your.email@tntra.io
-DEFAULT_PASSWORD=YourPassword
-```
+2. **Environment-Specific & Role Configs**: Duplicate the template files in the `config/` and `data/` directories:
+   - Copy `config/qa.env.example` to `config/qa.env`
+   - Copy `config/stage.env.example` to `config/stage.env`
+   - Copy `config/prod.env.example` to `config/prod.env`
+   - Copy `data/users.json.example` to `data/users.json`
 
-> **Note:** Each team member should create their own `.env` file with their personal credentials. Do not commit this file.
+Update these files with your personal/local credentials. These files are gitignored so your credentials will not be pushed to Git.
 
 ---
 

@@ -182,3 +182,38 @@ export function getEnvVar(name, defaultValue) {
   }
   return value;
 }
+
+/**
+ * Generate a random alphabetic string of the given length.
+ * @param {number} [length=6]
+ * @returns {string}
+ */
+export function generateRandomAlphabetic(length = 6) {
+  const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz';
+  let result = '';
+  for (let i = 0; i < length; i++) {
+    result += chars.charAt(Math.floor(Math.random() * chars.length));
+  }
+  return result;
+}
+
+/**
+ * Generate a random user data object with a common prefix for Tulip UAT.
+ * @param {string} [prefix='Tuliptestdata']
+ * @returns {{ firstName: string, lastName: string, email: string, password: string }}
+ */
+export function generateTulipUser(prefix = 'Tuliptestdata') {
+  const randomSuffix = generateRandomAlphabetic(6);
+  const randomNumber = generateRandomNumber(100000, 999999);
+  
+  // First name and Last name must be alphabetic only
+  const firstName = `${prefix}${randomSuffix}`;
+  const lastName = `Doe`;
+  // Email username can be alphanumeric
+  const email = `${prefix.toLowerCase()}_${randomSuffix.toLowerCase()}${randomNumber}@yopmail.com`;
+  // Password with special characters, uppercase, lowercase, numbers
+  const password = `Password${randomNumber}!`;
+  
+  return { firstName, lastName, email, password };
+}
+
