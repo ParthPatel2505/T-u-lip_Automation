@@ -1,0 +1,22 @@
+{
+  "admin": {
+    "username": "admin.user@tntra.io",
+    "password": "AdminPassword123!",
+    "description": "Admin user with full access"
+  },
+  "default": {
+    "username": "default.user@tntra.io",
+    "password": "DefaultPassword123!",
+    "description": "Default test user"
+  },
+  "member": {
+    "username": "member.user@tntra.io",
+    "password": "MemberPassword123!",
+    "description": "Standard team member"
+  },
+  "viewer": {
+    "username": "viewer.user@tntra.io",
+    "password": "ViewerPassword123!",
+    "description": "Read-only viewer"
+  }
+}

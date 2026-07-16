@@ -12,11 +12,23 @@
  */
 import { test as base } from '@playwright/test';
 import { LoginPage } from '../pages/LoginPage.js';
+import { SignupPage } from '../pages/Signup/SignupPage.js';
+import { YopmailPage } from '../pages/Signup/YopmailPage.js';
 
 /**
  * Custom test fixture extending Playwright's base test.
  */
 export const test = base.extend({
+  /**
+   * Extend browser context to inject stealth scripts (hiding webdriver flag) into all tabs.
+   */
+  context: async ({ context }, use) => {
+    await context.addInitScript(() => {
+      Object.defineProperty(navigator, 'webdriver', { get: () => undefined });
+    });
+    await use(context);
+  },
+
   /**
    * Provides a LoginPage instance.
    * The page navigates to the login URL automatically.
@@ -25,6 +37,24 @@ export const test = base.extend({
     const loginPage = new LoginPage(page);
     await loginPage.goToLoginPage();
     await use(loginPage);
+  },
+
+  /**
+   * Provides a SignupPage instance.
+   * The page navigates to the signup URL automatically.
+   */
+  signupPage: async ({ page }, use) => {
+    const signupPage = new SignupPage(page);
+    await signupPage.goToSignupPage();
+    await use(signupPage);
+  },
+
+  /**
+   * Provides a YopmailPage instance.
+   */
+  yopmailPage: async ({ page }, use) => {
+    const yopmailPage = new YopmailPage(page);
+    await use(yopmailPage);
   },
 
   /**
@@ -41,3 +71,4 @@ export const test = base.extend({
 });
 
 export { expect } from '@playwright/test';
+

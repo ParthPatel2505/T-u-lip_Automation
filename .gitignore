@@ -26,4 +26,5 @@ Thumbs.db
 *.swp
 *.swo
 
-/config/
+config/*.env
+data/users.json

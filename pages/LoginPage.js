@@ -185,11 +185,13 @@ export class LoginPage extends BasePage {
       logValidation('Login successful — login form is no longer visible');
       return true;
     } catch {
-      // Fallback: check if URL changed from the login/landing page
+      // Fallback: check if URL changed from both the landing page AND the login page
       try {
         const currentUrl = this.getCurrentUrl();
         const baseUrl = process.env.BASE_URL || 'https://tulip-uat.tntra.io/tix/';
-        if (currentUrl !== baseUrl && currentUrl !== baseUrl.replace(/\/$/, '')) {
+        const isLanding = currentUrl === baseUrl || currentUrl === baseUrl.replace(/\/$/, '');
+        const isLogin = currentUrl.includes('/login');
+        if (!isLanding && !isLogin) {
           logValidation(`Login successful — URL changed to: ${currentUrl}`);
           return true;
         }

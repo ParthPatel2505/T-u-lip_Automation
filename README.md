@@ -10,10 +10,6 @@ Automated testing framework for **Tulip UAT** built with [Playwright](https://pl
 playwright-enterprise-framework/
 │
 ├── tests/                    # Test suites organized by type
-│   ├── smoke/                # Smoke tests (login, basic flows)
-│   ├── regression/           # Full regression tests
-│   ├── api/                  # API tests
-│   └── visual/               # Visual regression tests
 │
 ├── pages/                    # Page Object Models
 │   ├── BasePage.js           # Base class with reusable methods
