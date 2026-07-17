@@ -17,8 +17,42 @@ jobs:
       run: npm ci
     - name: Install Playwright Browsers
       run: npx playwright install --with-deps
+
+    # 1. Dynamically recreate the users.json file using repository secrets
+    - name: Create data/users.json
+      run: |
+        mkdir -p data
+        echo '{
+          "admin": {
+            "username": "${{ secrets.DEFAULT_USERNAME }}",
+            "password": "${{ secrets.DEFAULT_PASSWORD }}",
+            "description": "Admin user"
+          },
+          "default": {
+            "username": "${{ secrets.DEFAULT_USERNAME }}",
+            "password": "${{ secrets.DEFAULT_PASSWORD }}",
+            "description": "Default user"
+          },
+          "member": {
+            "username": "${{ secrets.DEFAULT_USERNAME }}",
+            "password": "${{ secrets.DEFAULT_PASSWORD }}",
+            "description": "Member user"
+          },
+          "viewer": {
+            "username": "${{ secrets.DEFAULT_USERNAME }}",
+            "password": "${{ secrets.DEFAULT_PASSWORD }}",
+            "description": "Viewer user"
+          }
+        }' > data/users.json
+
+    # 2. Run the tests while injecting the environment variables
     - name: Run Playwright tests
+      env:
+        DEFAULT_USERNAME: ${{ secrets.DEFAULT_USERNAME }}
+        DEFAULT_PASSWORD: ${{ secrets.DEFAULT_PASSWORD }}
+        ENV: qa
       run: npx playwright test
+
     - uses: actions/upload-artifact@v4
       if: ${{ !cancelled() }}
       with:
