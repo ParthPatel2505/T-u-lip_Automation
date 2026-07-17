@@ -12,6 +12,8 @@
  */
 import { test as base } from '@playwright/test';
 import { LoginPage } from '../pages/LoginPage.js';
+import { Add_Idea_Page } from '../pages/Automation_Acceleration/Idea/Add_Idea_Page.js';
+import { Edit_Idea_Page } from '../pages/Automation_Acceleration/Idea/Edit_Idea_Page.js';
 
 /**
  * Custom test fixture extending Playwright's base test.
@@ -38,6 +40,11 @@ export const test = base.extend({
     await loginPage.loginWithEnvCredentials();
     await use(page);
   },
+
+  ideaPage: async ({ page }, use) => {
+    const ideaPage = new Add_Idea_Page(page);
+    await use(ideaPage);
+  }
 });
 
 export { expect } from '@playwright/test';

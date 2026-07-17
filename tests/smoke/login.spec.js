@@ -16,7 +16,7 @@
  *  - Login form validations
  * ============================================================
  */
-import { test, expect } from '../../fixtures/baseFixture.js';
+import { test, expect } from "../../fixtures/baseFixture.js";
 
 test.describe('Login Page — Smoke Tests', () => {
   /**
@@ -103,7 +103,7 @@ test.describe('Login Page — Smoke Tests', () => {
     // Fill only the email field
     await loginPage.fill(
       loginPage.emailInput,
-      process.env.DEFAULT_USERNAME || 'parth.patel@tntra.io'
+      process.env.DEFAULT_USERNAME || 'nensi.bhavsar@tntra.io'
     );
 
     // Click the sign-in button without entering password
@@ -136,7 +136,7 @@ test.describe('Login Page — Dynamic User Login', () => {
    * Team members can pass their own credentials directly.
    */
   test('should login with explicit credentials', async ({ loginPage }) => {
-    const username = process.env.DEFAULT_USERNAME || 'parth.patel@tntra.io';
+    const username = process.env.DEFAULT_USERNAME || 'nensi.bhavsar@tntra.io';
     const password = process.env.DEFAULT_PASSWORD || 'Test@123';
 
     await loginPage.login(username, password);

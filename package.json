@@ -27,7 +27,12 @@
     "@playwright/test": "^1.61.1",
     "@types/node": "^26.1.1"
   },
-  "keywords": ["playwright", "automation", "testing", "tulip"],
+  "keywords": [
+    "playwright",
+    "automation",
+    "testing",
+    "tulip"
+  ],
   "author": "Tulip QA Team",
   "license": "ISC"
 }
